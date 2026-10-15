@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172554">
+<title>Student Attendance Management System</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="app.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">SA</div><div><strong>AttendEase</strong><small>Student Attendance</small></div></div>
+    <nav>
+      <a class="nav-link active" href="#dashboard">▦ <span>Dashboard</span></a>
+      <a class="nav-link" href="#students">♙ <span>Students</span></a>
+      <a class="nav-link" href="#attendance">✓ <span>Mark Attendance</span></a>
+      <a class="nav-link" href="#records">▤ <span>Attendance Records</span></a>
+    </nav>
+    <div class="sidebar-note"><span class="status-dot"></span> Local demo mode <p>Your records stay in this browser.</p></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><p class="eyebrow">STUDENT ADMINISTRATION</p><h1>Student Attendance Management System</h1><p class="muted">Manage students and keep daily attendance organized.</p></div><div class="today-pill" id="todayLabel">Today</div></header>
+    <section id="dashboard" class="section">
+      <div class="section-heading"><div><h2>Overview</h2><p class="muted">A quick look at your attendance data.</p></div><button class="btn btn-secondary" id="exportTop">Export CSV ↓</button></div>
+      <div class="stats-grid">
+        <article class="stat-card"><span class="stat-icon blue">♙</span><p>Total students</p><strong id="totalStudents">0</strong><small>Registered students</small></article>
+        <article class="stat-card"><span class="stat-icon green">✓</span><p>Present today</p><strong id="presentToday">0</strong><small>Marked present</small></article>
+        <article class="stat-card"><span class="stat-icon red">×</span><p>Absent today</p><strong id="absentToday">0</strong><small>Marked absent</small></article>
+        <article class="stat-card"><span class="stat-icon amber">%</span><p>Attendance rate</p><strong id="attendanceRate">—</strong><small>For selected date</small></article>
+      </div>
+    </section>
+    <section id="students" class="section panel">
+      <div class="section-heading"><div><h2>Students</h2><p class="muted">Add and manage your class list.</p></div></div>
+      <form id="studentForm" class="student-form">
+        <label>Roll number<input id="rollNo" required maxlength="20" placeholder="e.g. 101"></label>
+        <label>Student name<input id="studentName" required maxlength="80" placeholder="Full name"></label>
+        <label>Class / Grade<input id="studentClass" required maxlength="30" placeholder="e.g. FY BSc"></label>
+        <label>Section<input id="section" maxlength="20" placeholder="e.g. A"></label>
+        <button class="btn btn-primary" type="submit">+ Add student</button>
+      </form>
+      <div class="table-tools"><input id="studentSearch" placeholder="Search by roll number or name…" aria-label="Search students"><span id="studentCount" class="muted">0 students</span></div>
+      <div class="table-wrap"><table><thead><tr><th>Roll no.</th><th>Student name</th><th>Class</th><th>Section</th><th>Action</th></tr></thead><tbody id="studentRows"></tbody></table></div>
+      <p id="studentEmpty" class="empty-state">No students added yet. Use the form above to add your first student.</p>
+    </section>
+    <section id="attendance" class="section panel">
+      <div class="section-heading"><div><h2>Mark attendance</h2><p class="muted">Choose a date and set each student's status.</p></div></div>
+      <form id="attendanceForm" class="attendance-toolbar">
+        <label>Attendance date<input type="date" id="attendanceDate" required></label>
+        <label>Class filter<select id="classFilter"><option value="">All classes</option></select></label>
+        <button class="btn btn-secondary" type="button" id="setAllPresent">Set all present</button>
+        <button class="btn btn-primary" type="submit">Save attendance</button>
+      </form>
+      <div class="attendance-list" id="attendanceList"></div>
+      <p id="attendanceEmpty" class="empty-state">Add students first to start marking attendance.</p>
+    </section>
+    <section id="records" class="section panel">
+      <div class="section-heading"><div><h2>Attendance records</h2><p class="muted">Review saved attendance by date.</p></div><button class="btn btn-secondary" id="exportRecords">Export CSV ↓</button></div>
+      <div class="table-tools"><label class="inline-label">Date <input type="date" id="recordDate"></label><label class="inline-label">Status <select id="recordStatus"><option value="">All statuses</option><option>Present</option><option>Absent</option><option>Late</option></select></label></div>
+      <div class="table-wrap"><table><thead><tr><th>Date</th><th>Roll no.</th><th>Student</th><th>Class</th><th>Status</th></tr></thead><tbody id="recordRows"></tbody></table></div>
+      <p id="recordEmpty" class="empty-state">No attendance records yet.</p>
+    </section>
+    <footer>AttendEase · Student Attendance Management System <span>Frontend demo · Local browser storage</span></footer>
+  </main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

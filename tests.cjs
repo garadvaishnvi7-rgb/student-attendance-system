@@ -1,0 +1,13 @@
+const fs = require('fs');
+const assert = require('assert');
+const html = fs.readFileSync('dist/index.html', 'utf8');
+const css = fs.readFileSync('dist/style.css', 'utf8');
+const js = fs.readFileSync('dist/app.js', 'utf8');
+assert(html.includes('Student Attendance Management System'));
+assert(html.includes('id="studentForm"'));
+assert(html.includes('id="attendanceForm"'));
+assert(css.includes('.sidebar'));
+assert(js.includes('localStorage'));
+assert(js.includes('exportCSV'));
+assert(js.includes('attendanceForm'));
+console.log('Basic project checks passed.');

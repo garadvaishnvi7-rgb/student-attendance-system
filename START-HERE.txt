@@ -1,0 +1,14 @@
+STUDENT ATTENDANCE MANAGEMENT SYSTEM
+
+1. Extract the ZIP file.
+2. Open the dist folder.
+3. Double-click index.html to start the app in your browser.
+4. Add a student, select a date, and mark attendance.
+5. Use Export CSV to download attendance records.
+
+For GitHub Pages or another static host, upload ONLY the files inside dist:
+- index.html
+- style.css
+- app.js
+
+Data is stored locally in the browser. It is not a cloud database.
